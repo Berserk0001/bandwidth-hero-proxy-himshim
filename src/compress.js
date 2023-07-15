@@ -11,7 +11,7 @@ function compress(req, res, input) {
 		.grayscale(grayscale)
 		.toFormat(format, {
 			quality: quality,
-			effort: 0
+			effort: 1
     })
     .toBuffer((err, output, info) => {
       if (err || !info || res.headersSent) {
