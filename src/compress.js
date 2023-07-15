@@ -3,13 +3,15 @@ const redirect = require('./redirect');
 
 function compress(req, res, input) {
   const format = req.params.webp ? 'webp' : 'jpeg';
+  let compressionQuality = quality * 0.1;  //use const by default
 
-  sharp(input)
-    .grayscale(req.params.grayscale)
-    .toFormat(format, {
-      quality: req.params.quality,
-      progressive: true,
-      optimizeScans: true
+        quality = Math.ceil(compressionQuality);
+
+	return sharp(input)
+		.grayscale(grayscale)
+		.toFormat(format, {
+			quality: quality,
+			effort: 0
     })
     .toBuffer((err, output, info) => {
       if (err || !info || res.headersSent) {
