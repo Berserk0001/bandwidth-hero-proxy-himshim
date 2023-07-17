@@ -24,4 +24,4 @@ function compress(req, res, input) {
     })
 }
 
-module.exports = compress
+module.exports = compress;
