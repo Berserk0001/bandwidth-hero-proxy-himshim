@@ -8,8 +8,7 @@ function compress(req, res, input) {
     .grayscale(req.params.grayscale)
     .toFormat(format, {
       quality: req.params.quality,
-      progressive: true,
-      optimizeScans: true
+      effort: 1
     })
     .toBuffer((err, output, info) => {
       if (err || !info || res.headersSent) return redirect(req, res)
