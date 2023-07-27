@@ -1,4 +1,4 @@
-const pick = require("../src/params");
+const params = require("../src/params");
 const fetch = require("node-fetch");
 const shouldCompress = require("../src/shouldCompress");
 const compress = require("../src/compress");
@@ -35,7 +35,7 @@ exports.handler = async (event, context) => {
         let response_headers = {};
         let { data, type: originType } = await fetch(url, {  //use const by default
             headers: {
-                ...pick(event.headers, ['cookie', 'dnt', 'referer']),
+                ...params(event.headers, ['cookie', 'dnt', 'referer']),
                 'user-agent': 'Bandwidth-Hero Compressor',
                 'x-forwarded-for': event.headers['x-forwarded-for'] || event.ip,
                 via: '1.1 bandwidth-hero'
