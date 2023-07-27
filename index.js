@@ -1,7 +1,7 @@
-const pick = require("../util/pick");
+const pick = require("../src/params");
 const fetch = require("node-fetch");
-const shouldCompress = require("../util/shouldCompress");
-const compress = require("../util/compress");
+const shouldCompress = require("../src/shouldCompress");
+const compress = require("../src/compress");
 
 const DEFAULT_QUALITY = 10;
 
