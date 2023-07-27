@@ -1,21 +1,18 @@
-const DEFAULT_QUALITY = 10;
+// Since only single function required from lodash or underscore, writing it self
 
-function params(req, res, next) {
-  const { url, jpeg, bw, l } = req.query;
+module.exports = (obj, keys) => {
+	const new_obj = {};
 
-  if (!url) {
-    return res.end('bandwidth-hero-proxy');
-  }
+	if(!obj)	obj={};
+	if( ! Array.isArray(keys) ){
+		keys = [keys];	// convert to array
+	}
 
-  const urls = Array.isArray(url) ? url.join('&url=') : url;
-  const cleanedUrl = urls.replace(/http:\/\/1\.1\.\d\.\d\/bmi\/(https?:\/\/)?/i, 'http://');
+	for (const key in obj) {
+		if (Object.hasOwnProperty.call(obj, key) && keys.includes(key)) {
+			new_obj[key] = obj[key];
+		}
+	}
 
-  req.params.url = cleanedUrl;
-  req.params.avif = !jpeg;
-  req.params.grayscale = bw !== '0';
-  req.params.quality = parseInt(l, 10) || DEFAULT_QUALITY;
-
-  next();
-}
-
-module.exports = params;
+	return new_obj;
+};
